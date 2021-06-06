@@ -1,18 +1,19 @@
 package model;
 
+import model.strategy.VerificaCodigoQuandl;
+import model.strategy.VerificaCodigoYahooFinance;
+import model.strategy.VerificaOrigem;
+
 public class QuandlAdapter implements ServicoCotacaoAlvo {
 
     private Quandl quardl = null;
 
     @Override
     public String pegarCotacao(String codigoEmpresa) {
-        char ultimoCaracter = (codigoEmpresa.length()>4) ? codigoEmpresa.charAt(4) : 0 ;
-        String codigoEmpresaAdaptado = "WIKI/" + codigoEmpresa ;
-        if(ultimoCaracter == '4' || ultimoCaracter == '3') {
-            return "Apenas empresas listadas na bolsa americana";
-        }
+        VerificaOrigem verificaOrigem = new VerificaOrigem(new VerificaCodigoQuandl());
+        String codigoStrategy = verificaOrigem.verificar(codigoEmpresa);
 
-        this.quardl = new Quandl(codigoEmpresaAdaptado);
+        this.quardl = new Quandl(codigoStrategy);
         String cotacao = this.quardl.cotacaoAlphaVantage();
         return cotacao ;
     }

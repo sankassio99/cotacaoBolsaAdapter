@@ -17,6 +17,9 @@ public class Quandl {
     }
 
     public String cotacaoAlphaVantage() {
+        if(this.codigoEmpresa.equals("404")){
+            return "Apenas empresas listadas na bolsa americana" ;
+        }
         cotacao.append("Cotação da Empresa "+codigoEmpresa+" obtida pelo serviço Quandl: http://quandl.com\n");
         ClassicQuandlSession session = ClassicQuandlSession.create();
         DataSetRequest request = DataSetRequest.Builder

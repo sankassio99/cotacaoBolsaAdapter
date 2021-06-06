@@ -30,9 +30,10 @@ public class Principal {
     public static void main(String[] args) {
         System.out.println();
 
-        ServicoCotacaoAlvo cotacaoAdaptada = new QuandlAdapter();
+        //sempre chama a classe adapter
+        ServicoCotacaoAlvo cotacaoAdaptada = new YahooFinanceAdapter();
 
-        String cotacao = cotacaoAdaptada.pegarCotacao("ITSA4");
+        String cotacao = cotacaoAdaptada.pegarCotacao("BBAS3");
 
         System.out.println(cotacao);
         //No Yahoo Finance, as empresas brasileiras terminam com ".sa"

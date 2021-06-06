@@ -1,17 +1,19 @@
 package model;
 
+import model.strategy.VerificaCodigoAlphaVantage;
+import model.strategy.VerificaCodigoYahooFinance;
+import model.strategy.VerificaOrigem;
+
 public class AlphaVantageAdapter implements ServicoCotacaoAlvo{
 
     private AlphaVantage alphaVantage = null;
 
     @Override
     public String pegarCotacao(String codigoEmpresa) {
-        char ultimoCaracter = (codigoEmpresa.length()>4) ? codigoEmpresa.charAt(4) : 0 ;
-        String codigoEmpresaAdaptado = codigoEmpresa ;
-        if(ultimoCaracter == '4' || ultimoCaracter == '3') {
-            codigoEmpresaAdaptado = codigoEmpresa + ".SA";
-        }
-        this.alphaVantage = new AlphaVantage(codigoEmpresaAdaptado);
+        VerificaOrigem verificaOrigem = new VerificaOrigem(new VerificaCodigoAlphaVantage());
+        String codigoStrategy = verificaOrigem.verificar(codigoEmpresa);
+
+        this.alphaVantage = new AlphaVantage(codigoStrategy);
         String cotacao = alphaVantage.cotacaoAlphaVantage();
         return cotacao ;
     }
