@@ -9,7 +9,7 @@ public class QuandlAdapter implements ServicoCotacaoAlvo {
         char ultimoCaracter = (codigoEmpresa.length()>4) ? codigoEmpresa.charAt(4) : 0 ;
         String codigoEmpresaAdaptado = "WIKI/" + codigoEmpresa ;
         if(ultimoCaracter == '4' || ultimoCaracter == '3') {
-            codigoEmpresaAdaptado = codigoEmpresa + ".SA";
+            return "Apenas empresas listadas na bolsa americana";
         }
 
         this.quardl = new Quandl(codigoEmpresaAdaptado);

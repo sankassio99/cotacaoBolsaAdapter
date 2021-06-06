@@ -30,7 +30,7 @@ public class Principal {
     public static void main(String[] args) {
         System.out.println();
 
-        ServicoCotacaoAlvo cotacaoAdaptada = new YahooFinanceAdapter();
+        ServicoCotacaoAlvo cotacaoAdaptada = new QuandlAdapter();
 
         String cotacao = cotacaoAdaptada.pegarCotacao("ITSA4");
 
