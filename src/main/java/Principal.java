@@ -31,9 +31,9 @@ public class Principal {
         System.out.println();
 
         //sempre chama a classe adapter
-        ServicoCotacaoAlvo cotacaoAdaptada = new YahooFinanceAdapter();
+        ServicoCotacaoAlvo cotacaoAdaptada = new AlphaVantageAdapter();
 
-        String cotacao = cotacaoAdaptada.pegarCotacao("BBAS3");
+        String cotacao = cotacaoAdaptada.pegarCotacao("AOM");
 
         System.out.println(cotacao);
         //No Yahoo Finance, as empresas brasileiras terminam com ".sa"
